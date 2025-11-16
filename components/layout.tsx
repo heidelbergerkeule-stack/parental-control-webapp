@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Home, Users, Clock, Shield, BarChart3, Settings, Bell } from 'lucide-react'
+import { Home, Users, Clock, BarChart3, Settings, Bell, MapPin } from 'lucide-react'
 
 export default function DashboardLayout({
   children,
@@ -13,9 +13,8 @@ export default function DashboardLayout({
 
   const navItems = [
     { href: '/dashboard', icon: Home, label: 'Dashboard' },
-    { href: '/profiles', icon: Users, label: 'Profile' },
-    { href: '/screentime', icon: Clock, label: 'Bildschirmzeit' },
-    { href: '/blocking', icon: Shield, label: 'Blockierung' },
+    { href: '/profiles', icon: MapPin, label: 'Standorte' },
+    { href: '/screentime', icon: Clock, label: 'Aktivität' },
     { href: '/reports', icon: BarChart3, label: 'Berichte' },
     { href: '/settings', icon: Settings, label: 'Einstellungen' },
   ]
@@ -26,8 +25,8 @@ export default function DashboardLayout({
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
-            <Shield className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">FamilyGuard</span>
+            <MapPin className="h-6 w-6 text-primary" />
+            <span className="text-xl font-bold">CoupleTracker</span>
           </div>
           <div className="flex items-center gap-4">
             <button className="relative">
@@ -38,7 +37,7 @@ export default function DashboardLayout({
             </button>
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-sm font-semibold">MS</span>
+                <span className="text-sm font-semibold">CT</span>
               </div>
             </div>
           </div>
