@@ -1,24 +1,41 @@
-# CoupleTracker - Live Location & Activity Tracking 📍
+# CoupleTracker - Samsung Galaxy A33 GPS Tracking 📍
 
-Eine moderne Web-App für Paare zum gegenseitigen Live-Standort-Tracking, Geräteüberwachung und Aktivitätsanalyse.
+Live-Standortverfolgung und Geräteüberwachung für Paare mit Samsung Galaxy A33 5G Smartphones.
+
+## 📱 Unterstützte Geräte
+
+**Samsung Galaxy A33 5G**
+- 6.4" Super AMOLED Display
+- 5000 mAh Akku
+- GPS, GLONASS, GALILEO, BDS Navigation
+- 5G Konnektivität
+- Android 13 (One UI 5.0)
+- Samsung Knox Sicherheit
 
 ## ✨ Features
 
 ### 🎯 Hauptfunktionen
-- **Live GPS-Tracking**: Echtzeit-Standortverfolgung beider Partner
-- **Geräteüberwachung**: Überblick über alle verbundenen Geräte
-- **Aktivitätsanalyse**: Detaillierte App- und Web-Nutzungsstatistiken
-- **Sichere Zonen**: Benachrichtigungen beim Erreichen definierter Orte
-- **Interaktive Karte**: Visualisierung der Standorte auf Karte (vorbereitet)
-- **Benachrichtigungen**: Standort-Updates und Aktivitätsmeldungen
-- **Detaillierte Berichte**: Wöchliche Analysen und Trends
+- **Präzises GPS-Tracking**: Multi-Satelliten-Navigation (GPS + GLONASS + GALILEO + BDS) für ±5m Genauigkeit
+- **Live-Standortkarte**: Echtzeit-Visualisierung beider Partner auf interaktiver Karte
+- **Geräte-Monitoring**: Akkustand, Signalstärke, WiFi-Status, GPS-Status
+- **Sichere Zonen**: Geofencing mit Benachrichtigungen beim Erreichen/Verlassen
+- **5G-Tracking**: Schnelle Updates durch 5G-Verbindung
+- **Aktivitätsanalyse**: App-Nutzung und Geräte-Statistiken
+- **Samsung Knox Sicherheit**: Enterprise-Grade Datenschutz
 
-### 🎨 Design & UX
-- Modern und intuitiv
-- Responsive Design (Mobile-First)
-- Dark Mode Unterstützung
-- Interaktive Charts und Visualisierungen
-- Deutsche Lokalisierung
+### 📊 Tracking Features
+- GPS-Position mit Koordinaten (Latitude/Longitude)
+- Genauigkeit-Anzeige
+- Automatische Standort-Updates
+- Sichere Zonen Management
+- Routenverfolgung (vorbereitet)
+- Standort-Sharing
+
+### 🔋 Geräte-Monitoring
+- **Akku**: Ladestand, Ladestatus (5000 mAh)
+- **Signal**: 5G/4G/WiFi Status
+- **GPS**: Aktiv/Inaktiv, Genauigkeit
+- **Hardware**: Display, RAM, Storage Info
 
 ## 🚀 Installation
 
@@ -28,101 +45,85 @@ Eine moderne Web-App für Paare zum gegenseitigen Live-Standort-Tracking, Gerät
 
 ### Setup
 
-1. **Repository klonen**
 \`\`\`bash
 git clone https://github.com/heidelbergerkeule-stack/parental-control-webapp.git
 cd parental-control-webapp
-\`\`\`
-
-2. **Dependencies installieren**
-\`\`\`bash
 npm install
-\`\`\`
-
-3. **Development Server starten**
-\`\`\`bash
 npm run dev
 \`\`\`
 
-4. **App öffnen**
-Öffnen Sie [http://localhost:3000](http://localhost:3000) im Browser
+Öffne [http://localhost:3000](http://localhost:3000)
 
 ## 📱 Demo-Modus
 
-Die App läuft im Demo-Modus mit vordefinierten Mock-Daten:
-- **Login**: Beliebige E-Mail und Passwort eingeben
-- **Partner-Profile**: 2 vordefinierte Profile mit realistischen Daten
-- **Live-Tracking**: Simulierte GPS-Daten für Heidelberg
+Demo mit 2x Samsung Galaxy A33 5G:
+- **Login**: Beliebige E-Mail/Passwort
+- **Partner 1**: Hauptstraße 85, Heidelberg
+- **Partner 2**: Neckarstaden 24, Heidelberg
+- **Live GPS**: Simulierte Echtzeit-Daten
 
-## 🗂️ Hauptseiten
+## 🗺️ Karten-Integration
 
-### 1. Dashboard
-- Echtzeit-Übersicht beider Partner
-- Live-Standorte und Geräte-Status
-- Schnellzugriff auf wichtige Metriken
-- Aktivitäts-Timeline
+Die App ist vorbereitet für:
+- **Google Maps API**: Straßenkarten, Satellitenansicht
+- **Mapbox**: Alternative mit Custom-Styling
+- **OpenStreetMap**: Open-Source Option
 
-### 2. Standorte (Profile)
-- Interaktive Karte mit beiden Standorten
-- Detaillierte Geräteübersicht
-- Sichere Zonen Management
-- GPS-Koordinaten und Zeitstempel
+## 🛡️ Samsung Knox Sicherheit
 
-### 3. Aktivität
-- Tagesübersicht der Geräte-Nutzung
-- App-Nutzungsstatistiken mit Charts
-- Wöchliche Trends
-- Online-Status aller Geräte
+Die App nutzt Samsung Knox Features:
+- **Verschlüsselte Datenübertragung**
+- **Secure Boot**: Hardware-Level Schutz
+- **TrustZone**: Isolierte sichere Umgebung
+- **Knox Platform**: Enterprise-Grade Security
 
-### 4. Berichte
-- Detaillierte Aktivitätsanalysen
-- Wöchliche und monatliche Trends
-- Export-Funktionen
-- Individuelle Partner-Reports
+## 📝 Nächste Schritte
 
-### 5. Einstellungen
-- Kontoeinstellungen
-- Benachrichtigungspräferenzen
-- Datenschutz & Sicherheit
-- Dark Mode
+### Für produktiven Einsatz:
+
+1. **Backend mit Echtzeit-DB**
+   - Firebase Realtime Database
+   - Socket.io für Live-Updates
+   - PostgreSQL für Historische Daten
+
+2. **Native Android App**
+   - React Native oder Kotlin
+   - Hintergrund-GPS-Tracking
+   - Push-Benachrichtigungen
+   - Samsung Knox SDK Integration
+
+3. **GPS-Integration**
+   - Google Maps SDK
+   - Geolocation API
+   - Battery-optimiertes Tracking
+   - Geofencing API
+
+4. **Erweiterte Features**
+   - Routenhistorie
+   - Fahrt-/Aktivitätserkennung
+   - SOS-Button
+   - Offline-Modus
+
+## 🔐 Datenschutz & Einwilligung
+
+⚠️ **Wichtig**: 
+- Nur für einvernehmliches Tracking zwischen Partnern
+- Beide müssen aktiv zustimmen
+- Transparente Datennutzung
+- Jederzeit deaktivierbar
+- Samsung Knox verschlüsselt alle Daten
 
 ## 🛠️ Technologie-Stack
 
-- **Framework**: Next.js 14 (App Router)
-- **Sprache**: TypeScript
-- **Styling**: Tailwind CSS
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
 - **Charts**: Recharts
 - **Icons**: Lucide React
-
-## 📝 Nächste Schritte für Produktiveinsatz
-
-1. **Backend-Integration**:
-   - GPS-Tracking API (z.B. Geolocation API)
-   - Datenbank für historische Daten
-   - Authentifizierung & Sicherheit
-
-2. **Mobile Apps**:
-   - React Native Apps für iOS/Android
-   - Hintergrund-GPS-Tracking
-   - Push-Benachrichtigungen
-
-3. **Erweiterte Features**:
-   - Echte Kartenintegration (Google Maps/Mapbox)
-   - Geofencing für sichere Zonen
-   - Routenverfolgung
-   - SOS-Funktion
-
-## 🔐 Datenschutz
-
-⚠️ **Wichtig**: Diese App ist nur für den privaten Gebrauch zwischen einvernehmlichen Partnern gedacht. 
-- Beide Partner müssen der Überwachung zustimmen
-- Keine heimliche Überwachung
-- Transparente Datennutzung
-- Jederzeit deaktivierbar
+- **Geräte**: Samsung Galaxy A33 5G (Android 13)
+- **Security**: Samsung Knox Platform
 
 ## 📄 Lizenz
 
-Für den privaten Gebrauch.
+Für privaten Gebrauch zwischen einvernehmlichen Partnern.
 
 ---
 
