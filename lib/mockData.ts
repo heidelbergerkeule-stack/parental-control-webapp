@@ -6,22 +6,15 @@ export const mockChildren: Child[] = [
     name: 'Du',
     age: 28,
     avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Partner1',
-    screenTimeLimit: 0, // No limits for adults
+    screenTimeLimit: 0,
     usedScreenTime: 245,
     devices: [
       {
         id: 'd1',
-        name: 'iPhone 15 Pro',
+        name: 'Samsung Galaxy A33 5G',
         type: 'phone',
         status: 'online',
         lastActive: new Date(),
-      },
-      {
-        id: 'd2',
-        name: 'MacBook Pro',
-        type: 'computer',
-        status: 'online',
-        lastActive: new Date(Date.now() - 600000),
       },
     ],
     blockedApps: [],
@@ -43,18 +36,11 @@ export const mockChildren: Child[] = [
     usedScreenTime: 189,
     devices: [
       {
-        id: 'd3',
-        name: 'iPhone 14',
+        id: 'd2',
+        name: 'Samsung Galaxy A33 5G',
         type: 'phone',
         status: 'online',
         lastActive: new Date(),
-      },
-      {
-        id: 'd4',
-        name: 'iPad Pro',
-        type: 'tablet',
-        status: 'offline',
-        lastActive: new Date(Date.now() - 3600000),
       },
     ],
     blockedApps: [],
@@ -75,14 +61,14 @@ export const mockActivityLogs: ActivityLog[] = [
     childId: '1',
     timestamp: new Date(Date.now() - 600000),
     type: 'location',
-    description: 'Standort aktualisiert - Hauptstraße',
+    description: 'GPS-Standort aktualisiert - Hauptstraße',
   },
   {
     id: 'a2',
     childId: '2',
-    timestamp: new Date(Date.now() - 1200000),
+    timestamp: new Date(Date.now() - 900000),
     type: 'location',
-    description: 'Standort aktualisiert - Neckarstaden',
+    description: 'GPS-Standort aktualisiert - Neckarstaden',
   },
   {
     id: 'a3',
@@ -100,6 +86,20 @@ export const mockActivityLogs: ActivityLog[] = [
     description: 'Instagram geöffnet',
     duration: 15,
   },
+  {
+    id: 'a5',
+    childId: '1',
+    timestamp: new Date(Date.now() - 3000000),
+    type: 'location',
+    description: 'Sichere Zone "Zuhause" erreicht',
+  },
+  {
+    id: 'a6',
+    childId: '2',
+    timestamp: new Date(Date.now() - 3600000),
+    type: 'location',
+    description: 'Sichere Zone "Zuhause" verlassen',
+  },
 ]
 
 export const mockAlerts: Alert[] = [
@@ -107,7 +107,7 @@ export const mockAlerts: Alert[] = [
     id: 'al1',
     childId: '2',
     type: 'location',
-    message: 'Freundin hat den Heimbereich erreicht',
+    message: 'Freundin hat die sichere Zone "Zuhause" erreicht',
     timestamp: new Date(Date.now() - 900000),
     read: false,
   },
@@ -115,24 +115,34 @@ export const mockAlerts: Alert[] = [
     id: 'al2',
     childId: '1',
     type: 'location',
-    message: 'Du hast das Büro verlassen',
+    message: 'Du hast die sichere Zone "Büro" verlassen',
     timestamp: new Date(Date.now() - 1800000),
     read: false,
+  },
+  {
+    id: 'al3',
+    childId: '1',
+    type: 'location',
+    message: 'Dein Samsung Galaxy A33 Akku unter 20%',
+    timestamp: new Date(Date.now() - 2700000),
+    read: true,
   },
 ]
 
 export const mockAppUsage: AppUsage[] = [
   { appName: 'WhatsApp', duration: 85, category: 'Communication', icon: '💬' },
   { appName: 'Instagram', duration: 62, category: 'Social', icon: '📷' },
-  { appName: 'Chrome', duration: 45, category: 'Browser', icon: '🌐' },
+  { appName: 'Samsung Internet', duration: 45, category: 'Browser', icon: '🌐' },
   { appName: 'Spotify', duration: 120, category: 'Music', icon: '🎵' },
   { appName: 'Gmail', duration: 38, category: 'Email', icon: '📧' },
+  { appName: 'Google Maps', duration: 28, category: 'Navigation', icon: '🗺️' },
+  { appName: 'YouTube', duration: 95, category: 'Video', icon: '📺' },
 ]
 
 export const mockWebsiteUsage: WebsiteUsage[] = [
   { website: 'google.com', duration: 22, category: 'Search' },
   { website: 'youtube.com', duration: 65, category: 'Video' },
-  { website: 'netflix.com', duration: 180, category: 'Streaming' },
+  { website: 'instagram.com', duration: 45, category: 'Social' },
   { website: 'amazon.de', duration: 15, category: 'Shopping' },
 ]
 
@@ -154,6 +164,7 @@ export const safeZones = [
     lat: 49.3988,
     lng: 8.6724,
     radius: 200, // meters
+    color: '#10b981',
   },
   {
     id: 'work1',
@@ -161,6 +172,7 @@ export const safeZones = [
     lat: 49.4093,
     lng: 8.6944,
     radius: 150,
+    color: '#3b82f6',
   },
   {
     id: 'work2',
@@ -168,5 +180,48 @@ export const safeZones = [
     lat: 49.4120,
     lng: 8.7050,
     radius: 150,
+    color: '#f59e0b',
+  },
+  {
+    id: 'gym',
+    name: 'Fitnessstudio',
+    lat: 49.4050,
+    lng: 8.6800,
+    radius: 100,
+    color: '#8b5cf6',
   },
 ]
+
+// Device battery info
+export const deviceBatteryInfo = [
+  {
+    deviceId: 'd1',
+    batteryLevel: 78,
+    isCharging: false,
+    lastUpdated: new Date(),
+  },
+  {
+    deviceId: 'd2',
+    batteryLevel: 92,
+    isCharging: true,
+    lastUpdated: new Date(),
+  },
+]
+
+// Samsung Galaxy A33 specific features
+export const deviceFeatures = {
+  model: 'Samsung Galaxy A33 5G',
+  display: '6.4" Super AMOLED',
+  battery: '5000 mAh',
+  camera: '48MP Quad Camera',
+  storage: '128GB',
+  ram: '6GB',
+  android: 'Android 13 (One UI 5.0)',
+  features: [
+    'GPS, GLONASS, GALILEO, BDS',
+    '5G Connectivity',
+    'Accelerometer, Gyro, Proximity',
+    'Samsung Knox Security',
+    'Dual SIM Support',
+  ],
+}
