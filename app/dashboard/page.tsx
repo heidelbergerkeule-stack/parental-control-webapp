@@ -4,18 +4,19 @@ import DashboardLayout from '@/components/layout'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/card'
 import { Progress } from '@/components/progress'
 import { mockChildren, mockAlerts, mockActivityLogs } from '@/lib/mockData'
-import { formatTime, formatDateTime, calculatePercentage, getTimeOfDay } from '@/lib/utils'
-import { AlertCircle, CheckCircle, Clock, MapPin, Smartphone, TrendingUp } from 'lucide-react'
+import { formatTime, formatDateTime, getTimeOfDay } from '@/lib/utils'
+import { MapPin, Smartphone, Activity, Navigation, Clock } from 'lucide-react'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { Button } from '@/components/button'
 
 const chartData = [
-  { day: 'Mo', minutes: 95 },
-  { day: 'Di', minutes: 110 },
-  { day: 'Mi', minutes: 78 },
-  { day: 'Do', minutes: 125 },
-  { day: 'Fr', minutes: 105 },
-  { day: 'Sa', minutes: 92 },
-  { day: 'So', minutes: 85 },
+  { day: 'Mo', minutes: 245 },
+  { day: 'Di', minutes: 298 },
+  { day: 'Mi', minutes: 178 },
+  { day: 'Do', minutes: 325 },
+  { day: 'Fr', minutes: 205 },
+  { day: 'Sa', minutes: 267 },
+  { day: 'So', minutes: 189 },
 ]
 
 export default function Dashboard() {
@@ -26,9 +27,8 @@ export default function Dashboard() {
     evening: 'Guten Abend',
   }
 
-  const totalChildren = mockChildren.length
-  const activeDevices = mockChildren.reduce((acc, child) => 
-    acc + child.devices.filter(d => d.status === 'online').length, 0
+  const activeDevices = mockChildren.reduce((acc, person) => 
+    acc + person.devices.filter(d => d.status === 'online').length, 0
   )
   const unreadAlerts = mockAlerts.filter(a => !a.read).length
 
@@ -39,27 +39,27 @@ export default function Dashboard() {
         <div>
           <h1 className="text-3xl font-bold">{greetings[greeting]}! 👋</h1>
           <p className="text-muted-foreground mt-1">
-            Hier ist eine Übersicht über die Aktivitäten Ihrer Kinder
+            Live-Tracking und Aktivitätsübersicht
           </p>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 md:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Kinder Profile</CardTitle>
+              <CardTitle className="text-sm font-medium">Partner</CardTitle>
               <Smartphone className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{totalChildren}</div>
-              <p className="text-xs text-muted-foreground">Aktiv überwacht</p>
+              <div className="text-2xl font-bold">2</div>
+              <p className="text-xs text-muted-foreground">Verbunden</p>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Aktive Geräte</CardTitle>
-              <CheckCircle className="h-4 w-4 text-green-500" />
+              <Activity className="h-4 w-4 text-green-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{activeDevices}</div>
@@ -69,77 +69,105 @@ export default function Dashboard() {
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Benachrichtigungen</CardTitle>
-              <AlertCircle className="h-4 w-4 text-orange-500" />
+              <CardTitle className="text-sm font-medium">Standorte</CardTitle>
+              <MapPin className="h-4 w-4 text-blue-500" />
+            </CardHeader>
+            <CardContent>
+              <div className="text-2xl font-bold">Live</div>
+              <p className="text-xs text-muted-foreground">GPS aktiv</p>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+              <CardTitle className="text-sm font-medium">Updates</CardTitle>
+              <Navigation className="h-4 w-4 text-orange-500" />
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold">{unreadAlerts}</div>
               <p className="text-xs text-muted-foreground">Neue Meldungen</p>
             </CardContent>
           </Card>
-
-          <Card>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Ø Bildschirmzeit</CardTitle>
-              <TrendingUp className="h-4 w-4 text-blue-500" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">98 Min</div>
-              <p className="text-xs text-muted-foreground">Pro Tag diese Woche</p>
-            </CardContent>
-          </Card>
         </div>
 
-        {/* Children Overview */}
+        {/* Live Location Cards */}
         <div className="grid gap-6 md:grid-cols-2">
-          {mockChildren.map((child) => {
-            const percentage = calculatePercentage(child.usedScreenTime, child.screenTimeLimit)
-            const isNearLimit = percentage > 80
+          {mockChildren.map((person) => {
+            const onlineDevices = person.devices.filter(d => d.status === 'online').length
 
             return (
-              <Card key={child.id}>
+              <Card key={person.id} className="border-2 border-primary/20">
                 <CardHeader>
                   <div className="flex items-center gap-4">
-                    <img 
-                      src={child.avatar} 
-                      alt={child.name}
-                      className="h-12 w-12 rounded-full"
-                    />
-                    <div>
-                      <CardTitle>{child.name}</CardTitle>
-                      <CardDescription>{child.age} Jahre alt</CardDescription>
+                    <div className="relative">
+                      <img 
+                        src={person.avatar} 
+                        alt={person.name}
+                        className="h-16 w-16 rounded-full border-2 border-primary"
+                      />
+                      <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-green-500 border-2 border-white" />
                     </div>
+                    <div className="flex-1">
+                      <CardTitle>{person.name}</CardTitle>
+                      <CardDescription className="flex items-center gap-2 mt-1">
+                        <Activity className="h-3 w-3 text-green-500" />
+                        Online
+                      </CardDescription>
+                    </div>
+                    <Button size="sm">
+                      <MapPin className="h-4 w-4 mr-2" />
+                      Auf Karte
+                    </Button>
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
+                  {/* Location */}
+                  <div className="p-4 bg-blue-50 dark:bg-blue-950 rounded-lg">
+                    <div className="flex items-start gap-3">
+                      <MapPin className="h-5 w-5 text-blue-500 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="font-medium text-sm">Aktueller Standort</p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {person.location?.address}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-2">
+                          Aktualisiert: {formatDateTime(person.location?.timestamp || new Date())}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Devices */}
                   <div>
-                    <div className="flex justify-between mb-2">
-                      <span className="text-sm font-medium">Bildschirmzeit heute</span>
-                      <span className={`text-sm font-bold ${isNearLimit ? 'text-orange-500' : 'text-green-500'}`}>
-                        {formatTime(child.usedScreenTime)} / {formatTime(child.screenTimeLimit)}
+                    <p className="text-sm font-medium mb-2">
+                      Geräte ({onlineDevices} online)
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {person.devices.map((device) => (
+                        <div 
+                          key={device.id}
+                          className={`flex items-center gap-2 px-3 py-2 rounded-lg border ${
+                            device.status === 'online' 
+                              ? 'bg-green-50 dark:bg-green-950 border-green-200 dark:border-green-800' 
+                              : 'bg-secondary border-border'
+                          }`}
+                        >
+                          <div className={`h-2 w-2 rounded-full ${device.status === 'online' ? 'bg-green-500' : 'bg-gray-400'}`} />
+                          <span className="text-sm font-medium">{device.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Activity Today */}
+                  <div>
+                    <div className="flex justify-between items-center mb-2">
+                      <p className="text-sm font-medium">Aktivität heute</p>
+                      <span className="text-sm text-muted-foreground">
+                        {formatTime(person.usedScreenTime)}
                       </span>
                     </div>
-                    <Progress 
-                      value={percentage} 
-                      indicatorClassName={isNearLimit ? 'bg-orange-500' : 'bg-green-500'}
-                    />
-                  </div>
-
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin className="h-4 w-4" />
-                    <span className="truncate">{child.location?.address}</span>
-                  </div>
-
-                  <div className="flex gap-2">
-                    {child.devices.map((device) => (
-                      <div 
-                        key={device.id}
-                        className="flex items-center gap-1 px-2 py-1 rounded-full bg-secondary text-xs"
-                      >
-                        <div className={`h-2 w-2 rounded-full ${device.status === 'online' ? 'bg-green-500' : 'bg-gray-400'}`} />
-                        {device.name}
-                      </div>
-                    ))}
+                    <Progress value={Math.min((person.usedScreenTime / 480) * 100, 100)} />
                   </div>
                 </CardContent>
               </Card>
@@ -150,7 +178,7 @@ export default function Dashboard() {
         {/* Weekly Chart */}
         <Card>
           <CardHeader>
-            <CardTitle>Bildschirmzeit diese Woche</CardTitle>
+            <CardTitle>Aktivität diese Woche</CardTitle>
             <CardDescription>Durchschnittliche tägliche Nutzung</CardDescription>
           </CardHeader>
           <CardContent>
@@ -182,14 +210,14 @@ export default function Dashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {mockActivityLogs.slice(0, 4).map((log) => {
-                  const child = mockChildren.find(c => c.id === log.childId)
+                {mockActivityLogs.slice(0, 6).map((log) => {
+                  const person = mockChildren.find(c => c.id === log.childId)
                   return (
                     <div key={log.id} className="flex items-start gap-3">
                       <Clock className="h-4 w-4 mt-0.5 text-muted-foreground" />
                       <div className="flex-1 space-y-1">
                         <p className="text-sm">
-                          <span className="font-medium">{child?.name}</span> - {log.description}
+                          <span className="font-medium">{person?.name}</span> - {log.description}
                         </p>
                         <p className="text-xs text-muted-foreground">
                           {formatDateTime(log.timestamp)}
@@ -204,24 +232,18 @@ export default function Dashboard() {
 
           <Card>
             <CardHeader>
-              <CardTitle>Benachrichtigungen</CardTitle>
+              <CardTitle>Standort-Updates</CardTitle>
               <CardDescription>{unreadAlerts} neue Meldungen</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {mockAlerts.slice(0, 4).map((alert) => {
-                  const icons = {
-                    blocked_attempt: '🚫',
-                    limit_exceeded: '⚠️',
-                    location: '📍',
-                    inappropriate_content: '⛔',
-                  }
+                {mockAlerts.slice(0, 6).map((alert) => {
                   return (
                     <div 
                       key={alert.id} 
-                      className={`flex items-start gap-3 p-3 rounded-lg ${alert.read ? 'bg-secondary/50' : 'bg-orange-50 dark:bg-orange-950'}`}
+                      className={`flex items-start gap-3 p-3 rounded-lg ${alert.read ? 'bg-secondary/50' : 'bg-blue-50 dark:bg-blue-950'}`}
                     >
-                      <span className="text-xl">{icons[alert.type]}</span>
+                      <MapPin className="h-5 w-5 text-blue-500 mt-0.5" />
                       <div className="flex-1 space-y-1">
                         <p className="text-sm font-medium">{alert.message}</p>
                         <p className="text-xs text-muted-foreground">
