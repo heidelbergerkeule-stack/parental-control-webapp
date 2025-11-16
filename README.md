@@ -1,52 +1,47 @@
-# FamilyGuard - Parental Control Web App 🛡️
+# CoupleTracker - Live Location & Activity Tracking 📍
 
-Eine moderne, vollständig funktionsfähige Parental Control Web-Anwendung mit umfangreichen Überwachungs- und Kontrollfeatures für digitale Eltern.
+Eine moderne Web-App für Paare zum gegenseitigen Live-Standort-Tracking, Geräteüberwachung und Aktivitätsanalyse.
 
 ## ✨ Features
 
 ### 🎯 Hauptfunktionen
-- **Dashboard**: Echtzeit-Übersicht aller Kinderaktivitäten
-- **Bildschirmzeit-Management**: Tägliche Limits und Wochenpläne
-- **App & Website Blockierung**: Schwarze und weiße Listen
-- **Inhaltsfilterung**: Altersgerechte Content-Filter
-- **Standortverfolgung**: GPS-basierte Standortüberwachung (simuliert)
-- **Aktivitätsberichte**: Detaillierte Analysen und Statistiken
-- **Mehrere Profile**: Verwaltung mehrerer Kinderprofile
-- **Benachrichtigungssystem**: Echtzeit-Alerts für Eltern
+- **Live GPS-Tracking**: Echtzeit-Standortverfolgung beider Partner
+- **Geräteüberwachung**: Überblick über alle verbundenen Geräte
+- **Aktivitätsanalyse**: Detaillierte App- und Web-Nutzungsstatistiken
+- **Sichere Zonen**: Benachrichtigungen beim Erreichen definierter Orte
+- **Interaktive Karte**: Visualisierung der Standorte auf Karte (vorbereitet)
+- **Benachrichtigungen**: Standort-Updates und Aktivitätsmeldungen
+- **Detaillierte Berichte**: Wöchliche Analysen und Trends
 
 ### 🎨 Design & UX
 - Modern und intuitiv
 - Responsive Design (Mobile-First)
 - Dark Mode Unterstützung
-- Professionelle UI mit Tailwind CSS
 - Interaktive Charts und Visualisierungen
+- Deutsche Lokalisierung
 
 ## 🚀 Installation
 
 ### Voraussetzungen
-- Node.js 18+ 
+- Node.js 18+
 - npm oder yarn
 
 ### Setup
 
 1. **Repository klonen**
 \`\`\`bash
-git clone <repository-url>
-cd parental-control-app
+git clone https://github.com/heidelbergerkeule-stack/parental-control-webapp.git
+cd parental-control-webapp
 \`\`\`
 
 2. **Dependencies installieren**
 \`\`\`bash
 npm install
-# oder
-yarn install
 \`\`\`
 
 3. **Development Server starten**
 \`\`\`bash
 npm run dev
-# oder
-yarn dev
 \`\`\`
 
 4. **App öffnen**
@@ -56,141 +51,79 @@ yarn dev
 
 Die App läuft im Demo-Modus mit vordefinierten Mock-Daten:
 - **Login**: Beliebige E-Mail und Passwort eingeben
-- **Kinder-Profile**: 2 vordefinierte Profile (Emma, Lukas)
-- **Aktivitätsdaten**: Realistische Beispieldaten für Demonstrationszwecke
+- **Partner-Profile**: 2 vordefinierte Profile mit realistischen Daten
+- **Live-Tracking**: Simulierte GPS-Daten für Heidelberg
 
-## 🗂️ Projektstruktur
+## 🗂️ Hauptseiten
 
-\`\`\`
-parental-control-app/
-├── app/                    # Next.js App Router
-│   ├── dashboard/         # Dashboard-Seite
-│   ├── profiles/          # Profilverwaltung
-│   ├── screentime/        # Bildschirmzeit-Management
-│   ├── blocking/          # App/Website-Blockierung
-│   ├── reports/           # Aktivitätsberichte
-│   ├── settings/          # Einstellungen
-│   ├── layout.tsx         # Root Layout
-│   ├── page.tsx           # Login-Seite
-│   └── globals.css        # Globale Styles
-├── components/            # Wiederverwendbare Komponenten
-│   ├── layout.tsx         # Dashboard Layout
-│   ├── card.tsx           # Card Component
-│   ├── button.tsx         # Button Component
-│   └── progress.tsx       # Progress Bar
-├── lib/                   # Utility Functions & Data
-│   ├── utils.ts           # Helper Functions
-│   └── mockData.ts        # Demo-Daten
-├── types/                 # TypeScript Definitionen
-│   └── index.ts           # Type Interfaces
-└── public/                # Statische Assets
-\`\`\`
+### 1. Dashboard
+- Echtzeit-Übersicht beider Partner
+- Live-Standorte und Geräte-Status
+- Schnellzugriff auf wichtige Metriken
+- Aktivitäts-Timeline
+
+### 2. Standorte (Profile)
+- Interaktive Karte mit beiden Standorten
+- Detaillierte Geräteübersicht
+- Sichere Zonen Management
+- GPS-Koordinaten und Zeitstempel
+
+### 3. Aktivität
+- Tagesübersicht der Geräte-Nutzung
+- App-Nutzungsstatistiken mit Charts
+- Wöchliche Trends
+- Online-Status aller Geräte
+
+### 4. Berichte
+- Detaillierte Aktivitätsanalysen
+- Wöchliche und monatliche Trends
+- Export-Funktionen
+- Individuelle Partner-Reports
+
+### 5. Einstellungen
+- Kontoeinstellungen
+- Benachrichtigungspräferenzen
+- Datenschutz & Sicherheit
+- Dark Mode
 
 ## 🛠️ Technologie-Stack
 
 - **Framework**: Next.js 14 (App Router)
-- **Language**: TypeScript
+- **Sprache**: TypeScript
 - **Styling**: Tailwind CSS
 - **Charts**: Recharts
 - **Icons**: Lucide React
-- **Date Handling**: date-fns
 
-## 📊 Hauptseiten
+## 📝 Nächste Schritte für Produktiveinsatz
 
-### 1. Dashboard
-- Übersicht aller Kinderaktivitäten
-- Schnellzugriff auf wichtige Metriken
-- Wöchliche Bildschirmzeit-Charts
-- Benachrichtigungen und Alerts
+1. **Backend-Integration**:
+   - GPS-Tracking API (z.B. Geolocation API)
+   - Datenbank für historische Daten
+   - Authentifizierung & Sicherheit
 
-### 2. Profile
-- Verwaltung von Kinderprofilen
-- Geräteübersicht
-- Standortinformationen
-- Schnellstatistiken
+2. **Mobile Apps**:
+   - React Native Apps für iOS/Android
+   - Hintergrund-GPS-Tracking
+   - Push-Benachrichtigungen
 
-### 3. Bildschirmzeit
-- Tägliche Limits setzen
-- Wochenpläne erstellen
-- Nutzungsstatistiken
-- Schnellaktionen (Pause, Sperre)
+3. **Erweiterte Features**:
+   - Echte Kartenintegration (Google Maps/Mapbox)
+   - Geofencing für sichere Zonen
+   - Routenverfolgung
+   - SOS-Funktion
 
-### 4. Blockierung
-- Apps blockieren/freigeben
-- Websites blockieren/freigeben
-- Inhaltsfilter konfigurieren
-- Beliebte Apps/Sites Vorschläge
+## 🔐 Datenschutz
 
-### 5. Berichte
-- Detaillierte Aktivitätsanalysen
-- Wöchliche Trends
-- App/Website-Nutzung
-- Export-Funktionen
-
-### 6. Einstellungen
-- Kontoeinstellungen
-- Benachrichtigungspräferenzen
-- Datenschutz & Sicherheit
-- Erscheinungsbild (Dark Mode)
-
-## 🔧 Konfiguration
-
-### Tailwind CSS
-Die Tailwind-Konfiguration inkludiert:
-- Custom Color Scheme
-- Dark Mode Support
-- Responsive Breakpoints
-- Custom Animations
-
-### TypeScript
-Vollständig typisiert mit Interfaces für:
-- Child Profiles
-- Devices
-- Activity Logs
-- Alerts
-- Screen Time Data
-
-## 🚦 Development
-
-### Scripts
-\`\`\`bash
-npm run dev      # Development Server
-npm run build    # Production Build
-npm run start    # Production Server
-npm run lint     # ESLint Check
-\`\`\`
-
-### Weitere Entwicklung
-Für ein produktionsreifes System sollten folgende Erweiterungen implementiert werden:
-
-- **Backend Integration**: 
-  - REST API oder GraphQL
-  - Datenbank (PostgreSQL, MongoDB)
-  - Authentifizierung (NextAuth, Auth0)
-
-- **Echtzeitfunktionen**:
-  - WebSocket Integration
-  - Push-Benachrichtigungen
-  - Live-Tracking
-
-- **Mobile Apps**:
-  - React Native Apps für iOS/Android
-  - Geräte-Monitoring Agents
-
-- **Erweiterte Features**:
-  - KI-basierte Inhaltsanalyse
-  - Geofencing
-  - SOS-Funktionen
-  - Multi-Faktor-Authentifizierung
+⚠️ **Wichtig**: Diese App ist nur für den privaten Gebrauch zwischen einvernehmlichen Partnern gedacht. 
+- Beide Partner müssen der Überwachung zustimmen
+- Keine heimliche Überwachung
+- Transparente Datennutzung
+- Jederzeit deaktivierbar
 
 ## 📄 Lizenz
 
-Dieses Projekt ist für Demonstrationszwecke erstellt.
-
-## 👨‍💻 Autor
-
-Erstellt mit Next.js, TypeScript und Tailwind CSS
+Für den privaten Gebrauch.
 
 ---
 
-**Hinweis**: Dies ist eine Demo-Anwendung. Für den produktiven Einsatz sind zusätzliche Sicherheitsmaßnahmen, Backend-Integration und umfassende Tests erforderlich.
+**Repository**: [https://github.com/heidelbergerkeule-stack/parental-control-webapp](https://github.com/heidelbergerkeule-stack/parental-control-webapp)
