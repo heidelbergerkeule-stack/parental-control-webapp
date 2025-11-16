@@ -5,14 +5,14 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/button'
 import { mockChildren, mockAppUsage, mockWebsiteUsage, mockActivityLogs } from '@/lib/mockData'
 import { formatDateTime } from '@/lib/utils'
-import { Download, TrendingUp, TrendingDown, Activity } from 'lucide-react'
+import { Download, MapPin, Activity } from 'lucide-react'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line } from 'recharts'
 
 const weeklyComparison = [
-  { week: 'KW 44', minutes: 680 },
-  { week: 'KW 45', minutes: 720 },
-  { week: 'KW 46', minutes: 650 },
-  { week: 'KW 47', minutes: 690 },
+  { week: 'KW 44', minutes: 430 },
+  { week: 'KW 45', minutes: 487 },
+  { week: 'KW 46', minutes: 367 },
+  { week: 'KW 47', minutes: 434 },
 ]
 
 export default function Reports() {
@@ -36,16 +36,12 @@ export default function Reports() {
         <div className="grid gap-4 md:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Gesamt-Bildschirmzeit</CardTitle>
+              <CardTitle className="text-sm font-medium">Gesamt-Aktivität</CardTitle>
               <Activity className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">14.2 Std</div>
+              <div className="text-2xl font-bold">28.6 Std</div>
               <p className="text-xs text-muted-foreground">Diese Woche</p>
-              <div className="flex items-center text-xs text-green-500 mt-2">
-                <TrendingDown className="h-3 w-3 mr-1" />
-                -12% vs. letzte Woche
-              </div>
             </CardContent>
           </Card>
 
@@ -55,42 +51,30 @@ export default function Reports() {
               <Activity className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">2.0 Std</div>
+              <div className="text-2xl font-bold">4.1 Std</div>
               <p className="text-xs text-muted-foreground">Durchschnitt</p>
-              <div className="flex items-center text-xs text-green-500 mt-2">
-                <TrendingDown className="h-3 w-3 mr-1" />
-                -8% Verbesserung
-              </div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Blockierte Zugriffe</CardTitle>
-              <Activity className="h-4 w-4 text-muted-foreground" />
+              <CardTitle className="text-sm font-medium">Standort-Updates</CardTitle>
+              <MapPin className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">23</div>
+              <div className="text-2xl font-bold">124</div>
               <p className="text-xs text-muted-foreground">Diese Woche</p>
-              <div className="flex items-center text-xs text-orange-500 mt-2">
-                <TrendingUp className="h-3 w-3 mr-1" />
-                +5 vs. letzte Woche
-              </div>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Limits überschritten</CardTitle>
+              <CardTitle className="text-sm font-medium">Geräte aktiv</CardTitle>
               <Activity className="h-4 w-4 text-muted-foreground" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">3</div>
-              <p className="text-xs text-muted-foreground">Diese Woche</p>
-              <div className="flex items-center text-xs text-green-500 mt-2">
-                <TrendingDown className="h-3 w-3 mr-1" />
-                -2 vs. letzte Woche
-              </div>
+              <div className="text-2xl font-bold">4</div>
+              <p className="text-xs text-muted-foreground">Von 4 Geräten</p>
             </CardContent>
           </Card>
         </div>
@@ -120,7 +104,7 @@ export default function Reports() {
           <Card>
             <CardHeader>
               <CardTitle>Wöchlicher Trend</CardTitle>
-              <CardDescription>Bildschirmzeit über 4 Wochen</CardDescription>
+              <CardDescription>Aktivität über 4 Wochen</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="h-[300px]">
@@ -143,14 +127,14 @@ export default function Reports() {
           </Card>
         </div>
 
-        {/* Per Child Reports */}
-        {mockChildren.map((child) => (
-          <Card key={child.id}>
+        {/* Per Partner Reports */}
+        {mockChildren.map((person) => (
+          <Card key={person.id}>
             <CardHeader>
               <div className="flex items-center gap-3">
-                <img src={child.avatar} alt={child.name} className="h-10 w-10 rounded-full" />
+                <img src={person.avatar} alt={person.name} className="h-10 w-10 rounded-full" />
                 <div>
-                  <CardTitle>{child.name} - Detailbericht</CardTitle>
+                  <CardTitle>{person.name} - Detailbericht</CardTitle>
                   <CardDescription>Aktivitäten der letzten 7 Tage</CardDescription>
                 </div>
               </div>
@@ -177,28 +161,12 @@ export default function Reports() {
                 </div>
               </div>
 
-              {/* Website Usage */}
-              <div>
-                <h3 className="font-semibold mb-3">Besuchte Webseiten</h3>
-                <div className="space-y-2">
-                  {mockWebsiteUsage.map((site) => (
-                    <div key={site.website} className="flex items-center justify-between p-3 bg-secondary rounded-lg">
-                      <div>
-                        <p className="font-medium">{site.website}</p>
-                        <p className="text-xs text-muted-foreground">{site.category}</p>
-                      </div>
-                      <p className="font-bold">{site.duration} Min</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               {/* Activity Timeline */}
               <div>
                 <h3 className="font-semibold mb-3">Aktivitäts-Timeline</h3>
                 <div className="space-y-3">
                   {mockActivityLogs
-                    .filter(log => log.childId === child.id)
+                    .filter(log => log.childId === person.id)
                     .map((log) => (
                       <div key={log.id} className="flex gap-3 pl-4 border-l-2 border-primary pb-3">
                         <div className="flex-1">
@@ -215,30 +183,6 @@ export default function Reports() {
             </CardContent>
           </Card>
         ))}
-
-        {/* Export Options */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Berichte exportieren</CardTitle>
-            <CardDescription>Laden Sie detaillierte Berichte in verschiedenen Formaten herunter</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="grid gap-3 md:grid-cols-3">
-              <Button variant="outline">
-                <Download className="h-4 w-4 mr-2" />
-                Als PDF exportieren
-              </Button>
-              <Button variant="outline">
-                <Download className="h-4 w-4 mr-2" />
-                Als CSV exportieren
-              </Button>
-              <Button variant="outline">
-                <Download className="h-4 w-4 mr-2" />
-                E-Mail senden
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
       </div>
     </DashboardLayout>
   )
