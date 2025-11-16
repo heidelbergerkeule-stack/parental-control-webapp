@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/button'
-import { Shield } from 'lucide-react'
+import { MapPin } from 'lucide-react'
 
 export default function Home() {
   const router = useRouter()
@@ -12,7 +12,6 @@ export default function Home() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault()
-    // Demo login - just redirect to dashboard
     router.push('/dashboard')
   }
 
@@ -22,12 +21,12 @@ export default function Home() {
         <div className="text-center">
           <div className="flex justify-center mb-4">
             <div className="p-3 bg-primary/10 rounded-full">
-              <Shield className="h-12 w-12 text-primary" />
+              <MapPin className="h-12 w-12 text-primary" />
             </div>
           </div>
-          <h1 className="text-3xl font-bold">FamilyGuard</h1>
+          <h1 className="text-3xl font-bold">CoupleTracker</h1>
           <p className="text-muted-foreground mt-2">
-            Moderne Kindersicherung für digitale Eltern
+            Live-Standortverfolgung für Paare
           </p>
         </div>
 
@@ -70,10 +69,10 @@ export default function Home() {
         </div>
 
         <div className="pt-6 border-t space-y-2 text-sm text-center text-muted-foreground">
-          <p>✓ Bildschirmzeit verwalten</p>
-          <p>✓ Apps & Webseiten blockieren</p>
-          <p>✓ Standort verfolgen</p>
-          <p>✓ Aktivitätsberichte</p>
+          <p>📍 Live GPS-Tracking</p>
+          <p>📱 Geräteüberwachung</p>
+          <p>🔔 Standort-Benachrichtigungen</p>
+          <p>📊 Aktivitätsberichte</p>
         </div>
       </div>
     </div>
